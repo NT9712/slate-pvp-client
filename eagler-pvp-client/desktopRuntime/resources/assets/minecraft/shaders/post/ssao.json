@@ -1,0 +1,53 @@
+{
+    "targets": [
+        "ssao",
+        "swap"
+    ],
+    "passes": [
+        {
+            "name": "ssao",
+            "intarget": "minecraft:main",
+            "outtarget": "ssao",
+            "auxtargets": [
+                {
+                    "name": "DepthSampler",
+                    "id": "depth",
+                    "width": 1024,
+                    "height": 1024,
+                    "bilinear": false
+                },
+                {
+                    "name": "NormalSampler",
+                    "id": "normal",
+                    "width": 1024,
+                    "height": 1024,
+                    "bilinear": false
+                }
+            ],
+            "uniforms": {
+                "SSAORadius": 16.0,
+                "SSAOIntensity": 2.0,
+                "SSAOBias": 0.02
+            }
+        },
+        {
+            "name": "ssao_blur",
+            "intarget": "ssao",
+            "outtarget": "swap",
+            "auxtargets": [
+                {
+                    "name": "SSAOSampler",
+                    "id": "ssao",
+                    "width": 1024,
+                    "height": 1024,
+                    "bilinear": true
+                }
+            ]
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}

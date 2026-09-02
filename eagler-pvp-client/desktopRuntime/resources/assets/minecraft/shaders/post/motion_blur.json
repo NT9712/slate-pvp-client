@@ -1,0 +1,30 @@
+{
+    "targets": [
+        "swap"
+    ],
+    "passes": [
+        {
+            "name": "motion_blur",
+            "intarget": "minecraft:main",
+            "outtarget": "swap",
+            "auxtargets": [
+                {
+                    "name": "VelocitySampler",
+                    "id": "velocity",
+                    "width": 1024,
+                    "height": 1024,
+                    "bilinear": false
+                }
+            ],
+            "uniforms": {
+                "MotionBlurStrength": 0.5,
+                "SampleCount": 16
+            }
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}

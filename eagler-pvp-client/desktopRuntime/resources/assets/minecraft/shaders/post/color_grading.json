@@ -1,0 +1,25 @@
+{
+    "targets": [
+        "swap"
+    ],
+    "passes": [
+        {
+            "name": "color_grading",
+            "intarget": "minecraft:main",
+            "outtarget": "swap",
+            "uniforms": {
+                "Contrast": 0.1,
+                "Saturation": 0.15,
+                "Brightness": 0.02,
+                "ColorFilter": [1.0, 1.0, 1.0],
+                "Temperature": 0.05,
+                "Tint": 0.0
+            }
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}

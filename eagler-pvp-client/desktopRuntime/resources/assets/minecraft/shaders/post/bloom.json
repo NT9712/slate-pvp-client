@@ -1,0 +1,65 @@
+{
+    "targets": [
+        "bloom1",
+        "bloom2",
+        "swap"
+    ],
+    "passes": [
+        {
+            "name": "bloom_extract",
+            "intarget": "minecraft:main",
+            "outtarget": "bloom1",
+            "auxtargets": [
+                {
+                    "name": "DepthSampler",
+                    "id": "depth",
+                    "width": 1024,
+                    "height": 1024,
+                    "bilinear": false
+                }
+            ],
+            "uniforms": {
+                "BloomThreshold": 0.8,
+                "BloomIntensity": 1.5
+            }
+        },
+        {
+            "name": "bloom_blur_h",
+            "intarget": "bloom1",
+            "outtarget": "bloom2",
+            "uniforms": {
+                "BloomDirection": [1.0, 0.0]
+            }
+        },
+        {
+            "name": "bloom_blur_v",
+            "intarget": "bloom2",
+            "outtarget": "bloom1",
+            "uniforms": {
+                "BloomDirection": [0.0, 1.0]
+            }
+        },
+        {
+            "name": "bloom_composite",
+            "intarget": "minecraft:main",
+            "outtarget": "swap",
+            "auxtargets": [
+                {
+                    "name": "BloomSampler",
+                    "id": "bloom1",
+                    "width": 1024,
+                    "height": 1024,
+                    "bilinear": true
+                }
+            ],
+            "uniforms": {
+                "BloomIntensity": 1.0
+            }
+        },
+        {
+            "name": "blit",
+            "intarget": "swap",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}
