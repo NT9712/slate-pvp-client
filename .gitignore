@@ -1,0 +1,28 @@
+# Handoff repo - only include relevant source files
+# Ignore large asset directories
+modern-src/
+eagler-pvp-client/modern-assets/
+eagler-pvp-client/desktopRuntime/
+eagler-pvp-client/target_teavm_*/
+eagler-pvp-client/build/
+eagler-pvp-client/.gradle/
+eagler-pvp-client/gradle/
+eagler-pvp-client/gradlew*
+eagler-pvp-client/*.epk
+eagler-pvp-client/*.epw
+eagler-pvp-client/*.html
+
+# Ignore submodules/projects
+aetherfall/
+eagler-shaders/
+infinitymc-gauntlet/
+tidelm/
+vela/
+
+# Ignore build outputs
+*.log
+/tmp/
+deploy/public/*
+
+# Keep only source code and documentation
+!.gitignore
